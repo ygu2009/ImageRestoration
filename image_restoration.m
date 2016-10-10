@@ -118,6 +118,3 @@ end
 figure,imshow(u,[]);title(['GD NLMprior PSNR=', num2str(PSNR(u,ref))]);
 figure, plot(psnr_iter(2:end), 'r'), ylim([0 30]), title('GDNLMprior PSNR'), ylabel('PSNR'), xlabel('iteration')
 figure, plot(Eu(2:end),'b'),title('NLMprior Cost Funtion'), ylabel('energy'), xlabel('iteration')
-
-toc
-
