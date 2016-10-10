@@ -49,8 +49,8 @@ figure,imshow(init_u,[]), imcontrast
 
 
 %% NLM
-mex -largeArrayDims ./weights_NLM_ygu_sparsematrix.c
-w=weights_NLM_ygu_sparsematrix(init_u,sigma1,2,10);
+mex -largeArrayDims ./weights_NLM.c
+w=weights_NLM(init_u,sigma1,2,10);
 
 wu=w*reshape(init_u, M*N, 1);
 norm_wn=wu./sum(w,2);
@@ -108,10 +108,9 @@ while iter<2000 & abs(Eu(iter-1)-Eu(iter)) > 1e-5 & tau>1e-5
     if Eu(iter-1)-Eu(iter) <1e-3 & Eu(iter-1)-Eu(iter) >0
         tau=0.95*tau;
     end
-    if abs(Eu(iter-1)-Eu(iter)) <1e-4
-        lambda2=lambda2*0.95;
-        
-    end
+%     if abs(Eu(iter-1)-Eu(iter)) <1e-4
+%         lambda2=lambda2*0.95;
+%     end
   
     
 end
