@@ -16,7 +16,7 @@ B = imfilter(ref,H,'circular');
 [M, N]=size(B);
 sigma=3;
 BN = B+randn(M,N)*sigma;
-figure, imshow(BN,[]),title(['Raw PSNR=', num2str(PSNR(BN,ref))]);
+figure, imshow(BN,[0 255]),title(['Raw PSNR=', num2str(PSNR(BN,ref))]);
 
 %% Deconvolution and Denosing by Total Variation (TVL1) Regularization
 
@@ -43,9 +43,9 @@ while iter<1000
 end
 
 init_u=u;
-sigma1=sigma*5;
+sigma1=sigma*5; % for amplified noise
 
-figure,imshow(init_u,[]), imcontrast
+figure,imshow(init_u,[0 255]),title(['gdTV PSNR=',num2str(PSNR(init_u,ref))]);
 
 
 %% NLM
@@ -91,8 +91,7 @@ while iter<2000 & abs(Eu(iter-1)-Eu(iter)) > 1e-5 & tau>1e-5
     u1d=reshape(u, M*N, 1);
     
     NLMprior=u1d.*w1-w*u1d;
-    
-    
+
     v=imfilter(u,H,'circular')-BN;
     vf=imfilter(v,H,'circular');
     
@@ -105,18 +104,17 @@ while iter<2000 & abs(Eu(iter-1)-Eu(iter)) > 1e-5 & tau>1e-5
     Eu(iter)=Hu+lambda2*sum(Ju(:))/(M*N);
     
     % line search
-    if Eu(iter-1)-Eu(iter) <1e-3 & Eu(iter-1)-Eu(iter) >0
-        tau=0.95*tau;
-    end
+%     if Eu(iter-1)-Eu(iter) <1e-3 & Eu(iter-1)-Eu(iter) >0
+%         tau=0.95*tau;
+%     end
 %     if abs(Eu(iter-1)-Eu(iter)) <1e-4
 %         lambda2=lambda2*0.95;
 %     end
   
-    
 end
 
-figure,imshow(u,[]);title(['GD NLMprior PSNR=', num2str(PSNR(u,ref))]);
-figure, plot(psnr_iter(2:end), 'r'), ylim([0 30]), title('GDNLMprior PSNR'), ylabel('PSNR'), xlabel('iteration')
+figure,imshow(u,[0 255]);title(['NLMprior PSNR=', num2str(PSNR(u,ref))]);
+figure, plot(psnr_iter(2:end), 'r'), ylim([0 30]), title('NLMprior PSNR'), ylabel('PSNR'), xlabel('iteration')
 figure, plot(Eu(2:end),'b'),title('NLMprior Cost Funtion'), ylabel('energy'), xlabel('iteration')
 
 
