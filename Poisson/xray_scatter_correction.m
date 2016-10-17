@@ -26,7 +26,7 @@ gradfy = @(x)x(:,[2:end end])-x;
 [M,N]=size(raw);
 
 
-%% Deconvolution and Denosing by Total Variation (TVL1) Regularization
+%% Deconvolution by Total Variation (TVL1) Regularization
 
 lambda = 0.001;
 epsilon = 1*1e-4;
@@ -102,10 +102,4 @@ subplot(221),imshow(raw(5:end-5,5:end-5),[]), title('Scatter Image');
 subplot(222),imshow(init_u(5:end-5,5:end-5),[]), title('gd Poisson TV prior');
 subplot(223),imshow(NLM(5:end-5,5:end-5),[]), title('NLM');
 subplot(224),imshow(NLMprior_gd(5:end-5,5:end-5),[]),title('gd Poisson NLM prior');
-
-
-
-
-
-
 
