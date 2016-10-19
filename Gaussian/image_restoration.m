@@ -104,9 +104,9 @@ while iter<2000 & abs(Eu(iter-1)-Eu(iter)) > 1e-5 & tau>1e-5
     Eu(iter)=Hu+lambda2*sum(Ju(:))/(M*N);
     
     % line search
-%     if Eu(iter-1)-Eu(iter) <1e-3 & Eu(iter-1)-Eu(iter) >0
-%         tau=0.95*tau;
-%     end
+    if Eu(iter-1)-Eu(iter) <1e-3 & Eu(iter-1)-Eu(iter) >0
+        tau=0.95*tau;
+    end
 %     if abs(Eu(iter-1)-Eu(iter)) <1e-4
 %         lambda2=lambda2*0.95;
 %     end
