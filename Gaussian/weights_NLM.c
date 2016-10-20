@@ -2,7 +2,7 @@
  *   Implemented by Yingying Gu 2016-02-02
  *=================================================================
  *Syntax: w=weights_NLM_adaptive_h(image, h, hfpwin, hfswin)
- *hfpwin: half of similarity window
+ *hfpwin: half of similarity patch window
  *hfswin: half of search window
  *h: degree of filtering
  *=================================================================
