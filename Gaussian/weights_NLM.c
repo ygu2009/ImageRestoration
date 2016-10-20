@@ -1,17 +1,22 @@
-/*   pixel weights from Non-Local Means for Gaussian Noise
- *   Implemented by Yingying Gu 2016-02-02
- *=================================================================
- *Syntax: w=weights_NLM_adaptive_h(image, h, hfpwin, hfswin)
- *hfpwin: half of similarity patch window
- *hfswin: half of search window
- *h: degree of filtering
- *=================================================================
+/*   
+ *   Author: Yingying Gu
+ *   Version 1.0
+ *   Copyright 2016
+ *   University of Wisconsin-Milwaukee
  *
- * MATLAB C/MEX Code Implementation of the Non local filter for 
- * Paper  "A non-local algorithm for image denoising"
- * Author: A. Buades, B. Coll and J.M. Morel
+ *   pixel weights from Non-Local Means for Gaussian Noise
+ *   =================================================================
+ *   Syntax: w=weights_NLM(image, h, hfpwin, hfswin)
+ *   hfpwin: half of similarity patch window
+ *   hfswin: half of search window
+ *   h: degree of filtering
+ *   =================================================================
+ *
+ *   MATLAB C/MEX Code Implementation of the Non local filter for 
+ *   Paper  "A non-local algorithm for image denoising"
+ *   Author: A. Buades, B. Coll and J.M. Morel
  */
-/*Copyright (c) Yingying Gu 2016-02-02*/
+
 
 
 
