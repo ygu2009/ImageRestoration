@@ -1,3 +1,9 @@
+% Author: Yingying Gu (ying.y.gu@gmail.com)
+% version 1.0
+% Copyright 2016
+% University of Wisconsin-Milwaukee
+% Project: Scatter Reduction for X-ray Image
+
 clc
 clear
 close all
@@ -102,4 +108,10 @@ subplot(221),imshow(raw(5:end-5,5:end-5),[]), title('Scatter Image');
 subplot(222),imshow(init_u(5:end-5,5:end-5),[]), title('gd Poisson TV prior');
 subplot(223),imshow(NLM(5:end-5,5:end-5),[]), title('NLM');
 subplot(224),imshow(NLMprior_gd(5:end-5,5:end-5),[]),title('gd Poisson NLM prior');
+
+
+
+
+
+
 

@@ -1,17 +1,22 @@
-/*   pixel weights from Non-Local Means with adaptive h for Poisson Noise
+/*   
+ *   Author: Yingying Gu
+ *   Version 1.0
+ *   Copyright 2016
+ *   University of Wisconsin-Milwaukee
  *
- *=================================================================
- *Syntax: w=weights_NLM_adaptive_h(image, h, hfpwin, hfswin)
- *hfpwin: half of similarity patch window
- *hfswin: half of search window
- *h: degree of filtering
- *=================================================================
+ *   pixel weights from Non-Local Means for Poisson Noise
+ *   =================================================================
+ *   Syntax: w=weights_NLM_adaptive_h(image, hfpwin, hfswin)
+ *   hfpwin: half of similarity patch window
+ *   hfswin: half of search window
+ *   h: degree of filtering
+ *   =================================================================
  *
- * MATLAB C/MEX Code Implementation of the Non local filter for 
- * Paper  "A non-local algorithm for image denoising"
- * Author: A. Buades, B. Coll and J.M. Morel
+ *   For Possion noise model, this is modified Implementation of the 
+ *   Non local filter for Paper  "A non-local algorithm for image denoising"
+ *   Author: A. Buades, B. Coll and J.M. Morel
  */
-/*Copyright (c) Yingying Gu 2016-02-02*/
+
 
 #include "mex.h" /* Always include this */
 #include <math.h>
