@@ -1,5 +1,5 @@
 # ImageRestoration
-Image Deburring and Denoising
+Image Deburring and Denoising:
 
 This work is to develop the software-based correction algorithm for blurry and noisy image reconstrucion. 
 
