@@ -1,6 +1,6 @@
 % Author: Yingying Gu (ying.y.gu@gmail.com)
 % version 1.0
-% Copyright 2015
+% Copyright 2016
 % University of Wisconsin-Milwaukee
 
 clc
