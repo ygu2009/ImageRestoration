@@ -33,12 +33,12 @@ gradfy = @(x)x(:,[2:end end])-x;
 
 
 %% Deconvolution by Total Variation (TVL1) Regularization
-
 lambda = 0.001;
 epsilon = 1*1e-4;
 tau = 0.005;
 u = raw;
 
+% Using the iterative Gradient Descent method to minimize the cost function
 iter=1;
 while iter<1000
     iter=iter+1;
@@ -73,7 +73,7 @@ NLM=reshape(norm_wn,M,N);
 figure, imshow(NLM,[]), title('NLM');
 
 
-%% NLMpior with Poisson Moded and Gradient Descent solver
+%% NLMpior with Poisson Moded and Iterative Gradient Descent solver
 tic
 y = raw;
 gd_lambda = 0.005;
