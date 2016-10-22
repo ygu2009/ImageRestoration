@@ -32,7 +32,7 @@ gradfy = @(x)x(:,[2:end end])-x;
 [M,N]=size(raw);
 
 
-%% Deconvolution by Total Variation (TVL1) Regularization
+%% Deconvolution by Total Variation (TV-L1) Regularization
 lambda = 0.001;
 epsilon = 1*1e-4;
 tau = 0.005;
@@ -73,7 +73,7 @@ NLM=reshape(norm_wn,M,N);
 figure, imshow(NLM,[]), title('NLM');
 
 
-%% NLMpior with Poisson Moded and Iterative Gradient Descent solver
+%% Weighted TV-L2 regulization with Poisson Model and Iterative Gradient Descent solver
 tic
 y = raw;
 gd_lambda = 0.005;
