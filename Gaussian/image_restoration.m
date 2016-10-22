@@ -36,7 +36,7 @@ tau = 0.5;  %step size
 
 u = ones(M,N);
 
-% using the iterative Gradient Descent method to minimize the cost function
+% Using the iterative Gradient Descent method to minimize the cost function
 iter=1;
 while iter<1000
     iter=iter+1;
@@ -64,8 +64,7 @@ NLM=reshape(norm_wn,M,N);
 
 figure, imshow(NLM,[0 255]), title(['NLM PSNR=', num2str(PSNR(NLM,ref))]);
 
-%% Deconvolution and Denoising by weighted TVL2 Regularization / NLM prior 
-%% Using the iterative Gradient Descent method to minimize the cost function
+%% weighted TVL2 regularization and iterative Gradient Descent solver
 
 lambda2 = 0.005; %regularization parameter for NLM prior term
 
@@ -112,9 +111,9 @@ while iter<2000 & abs(Eu(iter-1)-Eu(iter)) > 1e-5 & tau>1e-5
     Eu(iter)=Hu+lambda2*sum(Ju(:))/(M*N);
     
     % line search
-%     if Eu(iter-1)-Eu(iter) <1e-3 & Eu(iter-1)-Eu(iter) >0
-%         tau=0.95*tau;
-%     end
+     if Eu(iter-1)-Eu(iter) <1e-3 & Eu(iter-1)-Eu(iter) >0
+         tau=0.95*tau;
+     end
 %     if abs(Eu(iter-1)-Eu(iter)) <1e-4
 %         lambda2=lambda2*0.95;
 %     end
