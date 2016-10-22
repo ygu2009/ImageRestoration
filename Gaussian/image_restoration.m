@@ -23,7 +23,7 @@ sigma=3;
 BN = B+randn(M,N)*sigma;
 figure, imshow(BN,[0 255]),title(['Raw PSNR=', num2str(PSNR(BN,ref))]);
 
-%% Deconvolution and Denosing by Total Variation (TVL1) Regularization
+%% Deconvolution and Denosing by Total Variation (TV-L1) Regularization
 
 % calculate the gradient of 2D image
 gradfx = @(x)x([2:end end],:)-x;
@@ -64,7 +64,7 @@ NLM=reshape(norm_wn,M,N);
 
 figure, imshow(NLM,[0 255]), title(['NLM PSNR=', num2str(PSNR(NLM,ref))]);
 
-%% weighted TVL2 regularization and iterative Gradient Descent solver
+%% Weighted TV-L2 regularization and iterative Gradient Descent solver
 
 lambda2 = 0.005; %regularization parameter for NLM prior term
 
