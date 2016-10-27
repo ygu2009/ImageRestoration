@@ -91,8 +91,6 @@ Eu(2)=Hu+lambda2*sum(Ju(:))/(M*N);
 iter=2;
 while iter<2000 & abs(Eu(iter-1)-Eu(iter)) > 1e-5 & tau>1e-5
     
-    iter=iter+1;
-    
     u = u - tau*(vf+lambda2*reshape(NLMprior,M,N));
     
     u1d=reshape(u, M*N, 1);
@@ -118,6 +116,7 @@ while iter<2000 & abs(Eu(iter-1)-Eu(iter)) > 1e-5 & tau>1e-5
 %         lambda2=lambda2*0.95;
 %     end
   
+    iter=iter+1;
 end
 
 figure,imshow(u,[0 255]);title(['NLMprior PSNR=', num2str(PSNR(u,ref))]);
