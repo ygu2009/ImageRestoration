@@ -19,7 +19,6 @@ gauss2DFilter=exp(-x.^2/(2*sigma_1^2)-y.^2/(2*sigma_2^2));
 gauss2DFilter=gauss2DFilter./sum(gauss2DFilter(:));
 
 H=gauss2DFilter;
-
 alpha=1;
 beta=1;
 
@@ -41,37 +40,28 @@ u = raw;
 % Using the iterative Gradient Descent method to minimize the cost function
 iter=1;
 while iter<1000
-    iter=iter+1;
     ux=gradfx(u);
     uy=gradfy(u); 
-    normgrad = sqrt(ux.^2+uy.^2+epsilon^2);
-    
+    normgrad = sqrt(ux.^2+uy.^2+epsilon^2); 
     v=alpha*u+beta*imfilter(u,H,'circular')-raw;
-    
-    vf=imfilter(v,H,'circular');
-    
-    u = u - tau*(vf-lambda*divergence(ux./normgrad,uy./normgrad));
-
+    vh=imfilter(v,H,'circular');
+    u = u - tau*(vh-lambda*divergence(ux./normgrad,uy./normgrad));
+    iter=iter+1;
 end
 
 init_u=u;
 
 figure,imshow(init_u(5:end-5,5:end-5),[]), title('gd Poisson TV prior'); imcontrast
 
-% keyboard
-
-
 %% NLM
 mex -largeArrayDims ./weights_NLM_adaptive_h.c
 w=weights_NLM_adaptive_h(init_u,2,15);
-
 
 wu=w*reshape(init_u, M*N, 1);
 norm_wn=wu./sum(w,2);
 NLM=reshape(norm_wn,M,N);
 
 figure, imshow(NLM,[]), title('NLM');
-
 
 %% Weighted TV-L2 regulization with Poisson Model and Iterative Gradient Descent solver
 tic
@@ -84,21 +74,15 @@ u = init_u;
 w1=sum(w,2);
 
 for iter = 1:200
-    
     u1d=reshape(u, M*N, 1);
     NLMprior=u1d.*w1-w*u1d;
-    
     uh=imfilter(u,H,'circular');
     v=alpha*u+beta*uh-y;
-    
     gradLH=alpha*(ones(M,N)-y./(alpha*u+beta*uh))+beta./(alpha*u+beta*uh).*imfilter(v,H,'circular');
-    
-    u = u - tau*(gradLH+gd_lambda*reshape(NLMprior,M,N));
-    
+    u = u - tau*(gradLH+gd_lambda*reshape(NLMprior,M,N));  
 end
 NLMprior_gd=u;
 figure,imshow(NLMprior_gd,[]),title('gd Poisson NLM prior');
-
 toc
 
 %% plot all together for comparison
@@ -108,10 +92,4 @@ subplot(221),imshow(raw(5:end-5,5:end-5),[]), title('Scatter Image');
 subplot(222),imshow(init_u(5:end-5,5:end-5),[]), title('gd Poisson TV prior');
 subplot(223),imshow(NLM(5:end-5,5:end-5),[]), title('NLM');
 subplot(224),imshow(NLMprior_gd(5:end-5,5:end-5),[]),title('gd Poisson NLM prior');
-
-
-
-
-
-
 
